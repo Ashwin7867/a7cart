@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
+import django_heroku
 import os
 from oscar.defaults import *
 import oscar
@@ -183,16 +184,12 @@ WSGI_APPLICATION = 'startup.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'startup_api',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST':'localhost',
-        'PORT':'5432',
-    },
-    'original': {
-        'ENGINE' : 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR , 'db.sqlite3'),
+        'USER': '',
+        'PASSWORD': '',
+        'HOST':'',
+        'PORT':'',
     }
 }
 
@@ -253,3 +250,5 @@ try:
     from settings_local import *
 except ImportError:
     pass  
+
+django_heroku.settings(locals())
