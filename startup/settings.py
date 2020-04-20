@@ -51,7 +51,6 @@ INSTALLED_APPS = [
 
     'django.contrib.sites',
     'django.contrib.flatpages',
-    'user',
     'oscar',
     'yourappsfolder.analytics.apps.AnalyticsConfig',
     'yourappsfolder.checkout.apps.CheckoutConfig',
@@ -92,8 +91,6 @@ INSTALLED_APPS = [
 ]
 
 SITE_ID = 1
-
-AUTH_USER_MODEL = "user.User"
 
 MIDDLEWARE = [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
