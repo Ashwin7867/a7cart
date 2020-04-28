@@ -135,6 +135,8 @@ OSCAR_DEFAULT_CURRENCY = 'INR'
 
 OSCARAPI_BLOCK_ADMIN_API_ACCESS = False
 
+OSCARAPI_PRODUCT_FIELDS = ['url','upc','id','title','attributes','categories','product_class','images','price','availability']
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
