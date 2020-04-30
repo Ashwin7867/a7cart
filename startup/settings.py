@@ -14,8 +14,9 @@ import django_heroku
 import os
 from oscar.defaults import *
 import oscar
+import dj_database_url
 
-
+DATABASES['default'] = dj_database_url.config(conn_max_age = 600, ssl_require =True)
 #import environ
 
 #env = environ.Env()
