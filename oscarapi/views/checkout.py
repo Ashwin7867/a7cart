@@ -8,6 +8,9 @@ from oscarapi.utils.loading import get_api_classes
 from oscarapi.signals import oscarapi_post_checkout
 from oscarapi.views.utils import parse_basket_from_hyperlink
 
+from oscarapi.customauth.modified_auth import CsrfExemptSessionAuthentication
+from rest_framework.authentication import BasicAuthentication
+
 Order = get_model("order", "Order")
 OrderLine = get_model("order", "Line")
 OrderLineAttribute = get_model("order", "LineAttribute")
@@ -129,6 +132,7 @@ class CheckoutView(views.APIView):
 
     order_serializer_class = OrderSerializer
     serializer_class = CheckoutSerializer
+    authentication_classes = (CsrfExemptSessionAuthentication, BasicAuthentication)
 
     def post(self, request, format=None):
         # TODO: Make it possible to create orders with options.
@@ -166,14 +170,15 @@ class CheckoutView(views.APIView):
 class UserAddressList(generics.ListCreateAPIView):
     serializer_class = UserAddressSerializer
     permission_classes = (IsOwner,)
+    authentication_classes = (CsrfExemptSessionAuthentication, BasicAuthentication)
 
     def get_queryset(self):
         return UserAddress.objects.filter(user=self.request.user)
 
-
 class UserAddressDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = UserAddressSerializer
     permission_classes = (IsOwner,)
+    authentication_classes = (CsrfExemptSessionAuthentication, BasicAuthentication)
 
     def get_queryset(self):
         return UserAddress.objects.filter(user=self.request.user)

@@ -15,8 +15,6 @@ import os
 from oscar.defaults import *
 import oscar
 import dj_database_url
-
-DATABASES['default'] = dj_database_url.config(conn_max_age = 600, ssl_require =True)
 #import environ
 
 #env = environ.Env()
@@ -98,7 +96,7 @@ MIDDLEWARE = [
 
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+   'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',

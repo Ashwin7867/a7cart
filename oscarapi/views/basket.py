@@ -13,6 +13,9 @@ from oscarapi.basket import operations
 from oscarapi.utils.loading import get_api_classes, get_api_class
 from oscarapi.views.utils import BasketPermissionMixin
 
+from oscarapi.customauth.modified_auth import CsrfExemptSessionAuthentication
+from rest_framework.authentication import BasicAuthentication
+
 __all__ = (
     "BasketView",
     "LineList",
@@ -89,6 +92,7 @@ class AddProductView(APIView):
 
     add_product_serializer_class = AddProductSerializer
     serializer_class = BasketSerializer
+    authentication_classes = (CsrfExemptSessionAuthentication, BasicAuthentication)
 
     def validate(
         self, basket, product, quantity, options
@@ -157,6 +161,8 @@ class AddVoucherView(APIView):
 
     add_voucher_serializer_class = VoucherAddSerializer
     serializer_class = VoucherSerializer
+    authentication_classes = (CsrfExemptSessionAuthentication, BasicAuthentication)
+
 
     def post(self, request, format=None):  # pylint: disable=redefined-builtin
         v_ser = self.add_voucher_serializer_class(
@@ -222,6 +228,8 @@ class ShippingMethodView(APIView):
 
     serializer_class = ShippingAddressSerializer
     shipping_method_serializer_class = ShippingMethodSerializer
+    authentication_classes = (CsrfExemptSessionAuthentication, BasicAuthentication)
+
 
     def _get(
         self, request, shipping_address=None, format=None
@@ -287,6 +295,8 @@ class LineList(BasketPermissionMixin, generics.ListCreateAPIView):
     permission_classes = (permissions.RequestAllowsAccessTo,)
     serializer_class = BasketLineSerializer
     queryset = Line.objects.all()
+    authentication_classes = (CsrfExemptSessionAuthentication, BasicAuthentication)
+
 
     def get_queryset(self):
         basket_pk = self.kwargs.get("pk")
