@@ -8,7 +8,7 @@ class User(AbstractUser):
     last_name = models.CharField(max_length = 15)
     phone = models.CharField(max_length = 13, unique = True)
     email = models.EmailField(unique = True, blank = True)
-    password = models.CharField(max_length = 20)
+    password = models.CharField(max_length = 200)
 
     USERNAME_FIELD = "username"
     REQUIRED_FIELDS = [ 'first_name', 'last_name','phone','email', 'password']
