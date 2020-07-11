@@ -50,6 +50,7 @@ INSTALLED_APPS = [
 
     'django.contrib.sites',
     'django.contrib.flatpages',
+    'user',
     'oscar',
     'yourappsfolder.analytics.apps.AnalyticsConfig',
     'yourappsfolder.checkout.apps.CheckoutConfig',
@@ -119,6 +120,7 @@ AUTHENTICATION_BACKENDS = (
 
 ROOT_URLCONF = 'startup.urls'
 
+AUTH_USER_MODEL = 'user.User'
 
 OSCAR_INITIAL_ORDER_STATUS = 'Pending'
 OSCAR_INITIAL_LINE_STATUS = 'Pending'

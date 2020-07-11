@@ -47,6 +47,8 @@ __all__ = (
 class OrderList(generics.ListAPIView):
     serializer_class = OrderSerializer
     permission_classes = (IsOwner,)
+    authentication_classes = (CsrfExemptSessionAuthentication, BasicAuthentication)
+
 
     def get_queryset(self):
         qs = Order.objects.all()
@@ -57,11 +59,14 @@ class OrderDetail(generics.RetrieveAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
     permission_classes = (IsOwner,)
+    authentication_classes = (CsrfExemptSessionAuthentication, BasicAuthentication)
+
 
 
 class OrderLineList(generics.ListAPIView):
     queryset = OrderLine.objects.all()
     serializer_class = OrderLineSerializer
+    authentication_classes = (CsrfExemptSessionAuthentication, BasicAuthentication)
 
     def get_queryset(self):
         pk = self.kwargs.get("pk")
@@ -72,6 +77,7 @@ class OrderLineList(generics.ListAPIView):
 class OrderLineDetail(generics.RetrieveAPIView):
     queryset = OrderLine.objects.all()
     serializer_class = OrderLineSerializer
+    authentication_classes = (CsrfExemptSessionAuthentication, BasicAuthentication)
 
     def get_queryset(self):
         return super().get_queryset().filter(order__user=self.request.user)
@@ -80,6 +86,7 @@ class OrderLineDetail(generics.RetrieveAPIView):
 class OrderLineAttributeDetail(generics.RetrieveAPIView):
     queryset = OrderLineAttribute.objects.all()
     serializer_class = OrderLineAttributeSerializer
+    authentication_classes = (CsrfExemptSessionAuthentication, BasicAuthentication)
 
 
 class CheckoutView(views.APIView):

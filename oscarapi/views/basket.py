@@ -61,6 +61,7 @@ class BasketView(APIView):
     """
 
     serializer_class = BasketSerializer
+    authentication_classes = (CsrfExemptSessionAuthentication, BasicAuthentication)
 
     def get(self, request, format=None):  # pylint: disable=redefined-builtin
         basket = operations.get_basket(request)
@@ -329,6 +330,8 @@ class BasketLineDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Line.objects.all()
     serializer_class = BasketLineSerializer
     permission_classes = (permissions.RequestAllowsAccessTo,)
+    authentication_classes = (CsrfExemptSessionAuthentication, BasicAuthentication)
+
 
     def get_queryset(self):
         basket_pk = self.kwargs.get("basket_pk")

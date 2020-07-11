@@ -9,6 +9,10 @@ from oscarapi.utils.loading import get_api_classes
 from oscarapi.basket import operations
 from oscar.core.loading import get_model
 
+import requests
+
+API_KEY = "tBAaL7yY4xPhuM5HDrwmdRkgUof1QbXGq2VlEj6IKF8TcWNZz9xhNoZfytH4PG0qdz761rAC9QXnsvJ2"
+
 LoginSerializer, UserSerializer, UserCreateSerializer = get_api_classes(
     "serializers.login", ["LoginSerializer", "UserSerializer", "UserCreateSerializer"]
 )

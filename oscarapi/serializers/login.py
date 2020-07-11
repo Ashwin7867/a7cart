@@ -23,7 +23,7 @@ class UserSerializer(serializers.ModelSerializer):
 class UserCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = overridable('OSCARAPI_USER_FIELDS', default = ('id','username','email','first_name','last_name','password'))
+        fields = overridable('OSCARAPI_USER_FIELDS', default = ('id','username','email','first_name','last_name','phone','password'))
 
     def create(self, validated_data):
         validated_data['password'] = make_password(validated_data['password'])
@@ -35,7 +35,6 @@ class LoginSerializer(serializers.Serializer):
         max_length=field_length(User.USERNAME_FIELD), required=True
     )
     password = serializers.CharField(max_length=field_length("password"), required=True)
-
     def validate(self, attrs):
         user = authenticate(username=attrs["username"], password= attrs["password"])
         if user is None:
