@@ -15,6 +15,11 @@ import os
 from oscar.defaults import *
 import oscar
 import dj_database_url
+import psycopg2
+
+DATABASE_URL = os.environ['DATABASE_URL']
+conn = psycopg2.connect(DATABASE_URL , sslmode='require')
+
 #import environ
 
 #env = environ.Env()
@@ -97,7 +102,7 @@ MIDDLEWARE = [
 
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-   'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -181,7 +186,6 @@ WSGI_APPLICATION = 'startup.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -245,6 +249,8 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 	'/static/'
 )
+
+DATABASES['default'] = dj_database_url.config(conn_max_age=600,ssl_require = True)
 
 try:
     from settings_local import *
