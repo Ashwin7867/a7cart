@@ -87,6 +87,7 @@ INSTALLED_APPS = [
     'oscar.apps.dashboard.shipping',
     'rest_framework',
     'oscarapi',
+    'otp_verify',
     # 3rd-party apps that oscar depends on
     'widget_tweaks',
     'haystack',

@@ -31,6 +31,7 @@ psycopg2==2.8.5
 purl==1.5
 python-dateutil==2.8.1
 pytz==2019.3
+pyotp==2.3.0 
 six==1.14.0
 sorl-thumbnail==12.6.3
 sqlparse==0.3.1
