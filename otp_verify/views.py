@@ -35,7 +35,7 @@ class getPhoneNumberRegistered(APIView):
             "sender_id" : SENDER_ID,
             "language": "english",
             "route": "qt",
-            "numbers" : "8793973534", 
+            "numbers" : str(phone), 
             "message" : "31395",
             "variables" : "{#CC#}|{#BB#}",
             "variables_values" : var_values
