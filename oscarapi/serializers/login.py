@@ -17,13 +17,13 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = overridable(
-            "OSCARAPI_USER_FIELDS", default=(User.USERNAME_FIELD, "id", "date_joined")
+            "OSCARAPI_USER_FIELDS", default=(User.USERNAME_FIELD, "id", "date_joined","email","first_name","last_name","phone")
         )
 
 class UserCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = overridable('OSCARAPI_USER_FIELDS', default = ('id','username','email','first_name','last_name','password'))
+        fields = overridable('OSCARAPI_USER_FIELDS', default = ('id','username','email','first_name','last_name','password',"phone"))
 
     def create(self, validated_data):
         validated_data['password'] = make_password(validated_data['password'])
