@@ -17,7 +17,7 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = overridable(
-            "OSCARAPI_USER_FIELDS", default=(User.USERNAME_FIELD, "id", "date_joined")
+            "OSCARAPI_USER_FIELDS", default=(User.USERNAME_FIELD, "id", "date_joined","email","first_name","last_name","phone")
         )
 
 class UserCreateSerializer(serializers.ModelSerializer):
